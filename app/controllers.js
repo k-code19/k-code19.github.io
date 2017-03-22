@@ -19,6 +19,7 @@ angular.module("testApp", []).controller("testCTRL", function($scope){
         if (text!="") {
             model.addComment(id, text);
             model.save();
+            $scope.items=model.read();
             $scope.comments = model.readComments($scope.currentIdItem);
             $scope.comment="";
         }
