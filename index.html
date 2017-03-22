@@ -1,0 +1,70 @@
+<!doctype html>
+<html ng-app="testApp">
+<head>
+    <title>test</title>
+    <link href="style/style.css" rel="stylesheet">
+</head>
+<body ng-controller="testCTRL">
+    <div class="container">
+
+        <aside>
+            <article>Main</article>
+            <a href="#" ng-click="show()" class="aside-item">
+                <div>Overview</div>
+            </a>
+        </aside>
+
+        <main ng-show="flagMain">
+
+            <section class="items">
+
+                <article>Items</article>
+
+                <div class="item-add">
+                    <input type="text" ng-model="name" placeholder="Type name here...">
+                    <button value="addName" ng-click="addName()">Add new</button>
+                </div>
+
+                <a href="#" class="item" ng-repeat="item in items track by $index" ng-click="selectItem(item.id, $index, $event)">
+                    <div class="item-div">
+                        <div class="name">
+                            {{item.name}}&nbsp;&nbsp;
+                            <span class="counter">{{item.comments.length}}</span>
+                        </div>
+
+                        <button value="deleteItem"  ng-click="deleteItem(item.id)">Delete</button>
+                    </div>
+                </a>
+
+            </section>
+
+            <section class="comments" ng-show="currentIndex">
+                <article>Comments #{{currentIndex}}</article>
+
+                <div class="comment" ng-repeat="comment in comments track by $index">
+                    <div class="pic">
+                    </div>
+                    <div class="text">
+                    {{comment}}
+                    </div>
+                </div>
+
+                <div class="comment add-comment">
+                    <div class="pic">
+                    </div>
+                    <textarea ng-model="comment" placeholder="Type a comment here..."></textarea>
+                </div>
+                <button value="addComment" ng-click="addComment(currentIdItem, comment)">Add comment</button>
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers.js"></script>
+    <script src="app/localstorage.js"></script>
+
+</body>
+</html>
